@@ -16,4 +16,11 @@
  * toArray()
  * 
  * 3. Delete a specific one by id
+ * 
+ * 
+ * deleteOne
+ * 
+ * 4.put
+ * 
+ * 5. patch
  */
