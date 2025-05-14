@@ -57,6 +57,34 @@ async function run() {
       res.send(result);
     });
 
+//Update database
+//eta app.patch diyeo kora jai
+app.put('/users/:id', async (req, res)=>{
+const id = req.params.id;
+const filter = {_id: new ObjectId (id)}
+const user = req.body
+
+
+// Specify the update to set a value for the plot field
+    const updatedDoc = {
+      $set: {
+        // plot: `A harvest of random numbers, such as: ${Math.random()}`
+        name: user.name,
+        email: user.email
+      }
+    }
+/* Set the upsert option to insert a document if no documents match
+    the filter */
+    const options = { upsert: true };
+    console.log(user)
+
+    // Update the first document that matches the filter
+    const result = await usersCollection.updateOne(filter, updatedDoc, options);
+    res.send(result)
+})
+
+
+
 
     //DELETE from database
     app.delete('/users/:id', async (req, res)=>{
